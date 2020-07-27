@@ -21,12 +21,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setSupportActionBar(toolbar)
+
+       /* setSupportActionBar(toolbar)
 
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
-        }
+        } */
 
         db = DBHelper(this)
 
@@ -34,12 +35,12 @@ class MainActivity : AppCompatActivity() {
 
         button_add.setOnClickListener {
             val reestr = ReestrDB (
-                Integer.parseInt(_id.text.toString()),
-                name.text.toString(),
-                kontrol.text.toString(),
-                data_start.text.toString(),
-                data_end.text.toString(),
-                length.text.toString()
+                Integer.parseInt(edit_id.text.toString()),
+                edit_name.text.toString(),
+                edit_kontrol.text.toString(),
+                edit_start.text.toString(),
+                edit_end.text.toString(),
+                edit_length.text.toString()
             )
             db.addSMP(reestr)
             refreshData()
@@ -49,8 +50,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun refreshData() {
         lstReestr = db.allReestr
-        val adapter = ListReestrAdapter(this@MainActivity, lstReestr, _id, name, kontrol, data_start, data_end, length)
-        list_tabl.adapter = adapter
+        val adapter = ListReestrAdapter(this@MainActivity, lstReestr, edit_id, edit_name, edit_kontrol, edit_start, edit_end, edit_length)
+        list_reestr.adapter = adapter
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

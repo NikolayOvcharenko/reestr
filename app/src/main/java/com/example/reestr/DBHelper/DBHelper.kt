@@ -28,16 +28,16 @@ class DBHelper (context: Context) : SQLiteOpenHelper (context, DATABASE_NAME, nu
         private val COLUMN_DATA_END = "data_end"
         private val COLUMN_LENGTH = "length"
 
-        var DB_PATH: String? = null
-        // private val DB_NAME = "extenalDB"
-        private var myDataBase: SQLiteDatabase? = null
-        private var myContext: Context? = null
+     //   var DB_PATH: String? = null
+     //   // private val DB_NAME = "extenalDB"
+     //   private var myDataBase: SQLiteDatabase? = null
+     //  private var myContext: Context? = null
     }
 
 
     //
 
-
+/*
 
     fun DBHelper(context: Context) {
         // super(context, DB_NAME, null, 10)
@@ -100,10 +100,10 @@ class DBHelper (context: Context) : SQLiteOpenHelper (context, DATABASE_NAME, nu
     }
 
     //
-
+*/
 
     override fun onCreate(db: SQLiteDatabase?) {
-        openDataBase()
+        // openDataBase()
 
         val CREATE_TABLE_QUERY: String = "CREATE TABLE $TABLE_NAME (" +
                 "$COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
