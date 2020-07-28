@@ -35,7 +35,7 @@ class DBHelper (context: Context) : SQLiteOpenHelper (context, DATABASE_NAME, nu
     }
 
 
-    //
+    // работа с БД на диске
 
 /*
 
@@ -108,7 +108,7 @@ class DBHelper (context: Context) : SQLiteOpenHelper (context, DATABASE_NAME, nu
         val CREATE_TABLE_QUERY: String = "CREATE TABLE $TABLE_NAME (" +
                 "$COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
                 "$COLUMN_NAME TEXT," +
-                "$COLUMN_KONTROL INTEGER," +
+                "$COLUMN_KONTROL TEXT," +
                 "$COLUMN_DATA_START INTEGER," +
                 "$COLUMN_DATA_END INTEGER," +
                 "$COLUMN_LENGTH INTEGER);"
@@ -160,10 +160,11 @@ class DBHelper (context: Context) : SQLiteOpenHelper (context, DATABASE_NAME, nu
 
     fun updateSMP (reestrDB: ReestrDB): Int {
         val db = this.writableDatabase
+        // deleteSMP(reestrDB)
         val values = ContentValues()
         values.put(COLUMN_ID.toString(),        reestrDB.id)
         values.put(COLUMN_NAME,                 reestrDB.name)
-        values.put(COLUMN_KONTROL.toString(),   reestrDB.kontrol)
+        values.put(COLUMN_KONTROL,              reestrDB.kontrol)
         values.put(COLUMN_DATA_START.toString(),reestrDB.start)
         values.put(COLUMN_DATA_END.toString(),  reestrDB.end)
         values.put(COLUMN_LENGTH.toString(),    reestrDB.length)

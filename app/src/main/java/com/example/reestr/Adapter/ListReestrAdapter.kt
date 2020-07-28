@@ -2,6 +2,7 @@ package com.example.reestr.Adapter
 
 import android.app.Activity
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +10,8 @@ import android.widget.BaseAdapter
 import android.widget.EditText
 import com.example.reestr.R
 import com.example.reestr.data.ReestrDB
-import kotlinx.android.synthetic.main.fragment_second.view.*
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.row_layout.*
 import kotlinx.android.synthetic.main.row_layout.view.*
 
 class ListReestrAdapter (internal var activity: Activity,
@@ -35,15 +37,18 @@ class ListReestrAdapter (internal var activity: Activity,
         rowView.txt_data_start.text = lstReestr[position].start.toString()
         rowView.txt_data_end.text = lstReestr[position].end.toString()
         rowView.txt_length.text = lstReestr[position].length.toString()
-
+        rowView.txt_id.setBackgroundColor(Color.WHITE)
         // cобытие
         rowView.setOnClickListener {
+
+            rowView.setBackgroundColor(Color.MAGENTA)
             edit_id.setText(rowView.txt_id.text.toString())
             edit_name.setText(rowView.txt_name.text.toString())
             edit_kontrol.setText(rowView.txt_kontrol.text.toString())
             edit_start.setText(rowView.txt_data_start.text.toString())
             edit_end.setText(rowView.txt_data_end.text.toString())
             edit_length.setText(rowView.txt_length.text.toString())
+
         }
         return rowView
     }
