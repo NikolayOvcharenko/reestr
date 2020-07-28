@@ -85,7 +85,7 @@ class MainActivity : AppCompatActivity() {
             edit_length
         )
         list_reestr.adapter = adapter
-        row_all.setBackgroundColor(Color.WHITE)
+        // row_all.setBackgroundColor(Color.WHITE)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
