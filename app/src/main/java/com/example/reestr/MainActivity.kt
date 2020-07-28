@@ -1,25 +1,26 @@
 package com.example.reestr
 
-import android.graphics.Color
+import android.database.sqlite.SQLiteException
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View.GONE
 import android.view.View.VISIBLE
+import android.widget.Button
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
-import com.example.reestr.Adapter.ListReestrAdapter
+import com.example.reestr.adapter.ListReestrAdapter
 import com.example.reestr.DBHelper.DBHelper
 import com.example.reestr.data.ReestrDB
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.row_layout.*
-import kotlinx.android.synthetic.main.row_layout.view.*
+
+var whers: String = ""
 
 class MainActivity : AppCompatActivity() {
-    var news: Boolean = true
-    lateinit var but_edit: LinearLayout
-    internal lateinit var db: DBHelper
-    internal var lstReestr: List<ReestrDB> = ArrayList<ReestrDB>()
+
+    private var news = 0
+    private lateinit var db: DBHelper
+    private var lstReestr: List<ReestrDB> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,44 +33,103 @@ class MainActivity : AppCompatActivity() {
         refreshData()
 
         button_edit.setOnClickListener {
-            news = false
+            news = 1
             edit.visibility = VISIBLE
+            button(true)
         }
 
         button_add.setOnClickListener {
-            news = true
-
+            news = 0
+            val edits: LinearLayout = findViewById(R.id.edit)
             // but_edit = findViewById(R.id.edit)
-            var edits: LinearLayout = findViewById(R.id.edit)
+            // var edits: LinearLayout = findViewById(R.id.edit)
             // edits.visibility(View.VISIBLE)
             edits.visibility = VISIBLE
+            button(true)
         }
 
-        button_delete.setOnClickListener{
+        button_delete.setOnClickListener {
             if (edit_id.text.toString() != "") {
                 val reestr = ReestrDB(Integer.parseInt(edit_id.text.toString()))
                 db.deleteSMP(reestr)
                 refreshData()
             }
+
         }
 
         button_ok.setOnClickListener {
-            if (edit_id.text.toString() != "") {
-                val reestr = ReestrDB(
-                    Integer.parseInt(edit_id.text.toString()),
-                    edit_name.text.toString(),
-                    edit_kontrol.text.toString(),
-                    edit_start.text.toString(),
-                    edit_end.text.toString(),
-                    edit_length.text.toString()
-                )
-                if (news) db.addSMP(reestr) else db.updateSMP(reestr)
-                refreshData()
+
+            if (news == 2) find()
+            else {
+                if (edit_id.text.toString() != "") {
+                    val reestr = ReestrDB(
+                        Integer.parseInt(edit_id.text.toString()),
+                        edit_name.text.toString(),
+                        edit_kontrol.text.toString(),
+                        edit_start.text.toString(),
+                        edit_end.text.toString(),
+                        edit_length.text.toString()
+                    )
+                    if (news == 0) db.addSMP(reestr) else db.updateSMP(reestr)
+                    refreshData()
+                }
             }
             edit.visibility = GONE
-
+            button(false)
         }
 
+        button_find.setOnClickListener {
+            button(true)
+            val edits: LinearLayout = findViewById(R.id.edit)
+            edits.visibility = VISIBLE
+            news = 2
+        }
+
+        button_clear.setOnClickListener {
+            edit_id.setText("")
+            edit_name.setText("")
+            edit_kontrol.setText("")
+            edit_start.setText("")
+            edit_end.setText("")
+            edit_length.setText("")
+        }
+    }
+
+    private fun button(index: Boolean) {
+        val add: Button = findViewById(R.id.button_add)
+        add.visibility = if (index) GONE else VISIBLE
+        val find: Button = findViewById(R.id.button_find)
+        find.visibility = if (index) GONE else VISIBLE
+        val del: Button = findViewById(R.id.button_delete)
+        del.visibility = if (index) GONE else VISIBLE
+        val edit: Button = findViewById(R.id.button_edit)
+        edit.visibility = if (index) GONE else VISIBLE
+        val ok: Button = findViewById(R.id.button_ok)
+        ok.visibility = if (index) VISIBLE else GONE
+        val clear: Button = findViewById(R.id.button_clear)
+        clear.visibility = if (index) VISIBLE else GONE
+    }
+
+    private fun find() {
+        whers = " where"
+        when {
+            (edit_id.text.toString() != "") -> whers += " _id = ${edit_id.text}"
+            (edit_name.text.toString() != "") -> whers += " name_smp = ${edit_name.text}"
+            (edit_kontrol.text.toString() != "") -> whers += " kontrol = ${edit_kontrol.text}"
+            (edit_start.text.toString() != "") -> whers += " data_start = ${edit_start.text}"
+            (edit_end.text.toString() != "") -> whers += " data_end = ${edit_end.text}"
+            (edit_length.text.toString() != "") -> whers += " length = ${edit_length.text}"
+            else -> whers = ""
+        }
+
+        try {
+
+            refreshData()
+
+        } catch (e: SQLiteException) {
+            whers = " where _id = 0"
+            refreshData()
+        }
     }
 
     private fun refreshData() {

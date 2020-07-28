@@ -1,5 +1,6 @@
-package com.example.reestr.Adapter
+package com.example.reestr.adapter
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.graphics.Color
@@ -10,24 +11,23 @@ import android.widget.BaseAdapter
 import android.widget.EditText
 import com.example.reestr.R
 import com.example.reestr.data.ReestrDB
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.row_layout.*
 import kotlinx.android.synthetic.main.row_layout.view.*
 
-class ListReestrAdapter (internal var activity: Activity,
-                   internal var lstReestr: List<ReestrDB>,
-                   internal var edit_id: EditText,
-                   internal var edit_name: EditText,
-                   internal var edit_kontrol: EditText,
-                   internal var edit_start: EditText,
-                   internal var edit_end: EditText,
-                   internal var edit_length: EditText): BaseAdapter() {
+class ListReestrAdapter (activity: Activity,
+                         private var lstReestr: List<ReestrDB>,
+                         private var edit_id: EditText,
+                         private var edit_name: EditText,
+                         private var edit_kontrol: EditText,
+                         private var edit_start: EditText,
+                         private var edit_end: EditText,
+                         private var edit_length: EditText): BaseAdapter() {
 
-    internal var inflater:LayoutInflater =
+    private var inflater:LayoutInflater =
         activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
 
 
+    @SuppressLint("ViewHolder", "InflateParams")
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val rowView: View = inflater.inflate(R.layout.row_layout, null)
 
@@ -37,11 +37,13 @@ class ListReestrAdapter (internal var activity: Activity,
         rowView.txt_data_start.text = lstReestr[position].start.toString()
         rowView.txt_data_end.text = lstReestr[position].end.toString()
         rowView.txt_length.text = lstReestr[position].length.toString()
-        rowView.txt_id.setBackgroundColor(Color.WHITE)
+        rowView.setBackgroundColor(Color.WHITE)
+
         // cобытие
         rowView.setOnClickListener {
 
             rowView.setBackgroundColor(Color.MAGENTA)
+
             edit_id.setText(rowView.txt_id.text.toString())
             edit_name.setText(rowView.txt_name.text.toString())
             edit_kontrol.setText(rowView.txt_kontrol.text.toString())

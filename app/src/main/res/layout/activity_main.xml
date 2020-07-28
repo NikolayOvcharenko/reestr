@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,14 +8,16 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/Top"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="Reestr SMP"
+        android:text="@string/reestrsmp"
         android:textSize="25sp"
         android:textStyle="bold" />
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
@@ -35,32 +38,46 @@
             android:weightSum="4">
 
             <Button
+                android:id="@+id/button_ok"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/ok"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/button_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/clear"
+                android:visibility="gone" />
+
+            <Button
                 android:id="@+id/button_add"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="ADD" />
+                android:text="@string/add" />
 
             <Button
                 android:id="@+id/button_delete"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="DEL" />
+                android:text="@string/del" />
 
             <Button
                 android:id="@+id/button_edit"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="EDIT" />
+                android:text="@string/edit" />
 
             <Button
                 android:id="@+id/button_find"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Find" />
+                android:text="@string/find" />
         </LinearLayout>
 
         <LinearLayout
@@ -74,50 +91,43 @@
                 android:id="@+id/edit_id"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:hint="ID"
+                android:hint="@string/id"
                 android:inputType="number" />
 
             <EditText
                 android:id="@+id/edit_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Name"
+                android:hint="@string/name"
                 android:inputType="text" />
 
             <EditText
                 android:id="@+id/edit_kontrol"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Kontrol"
+                android:hint="@string/kontrol"
                 android:inputType="text" />
 
             <EditText
                 android:id="@+id/edit_start"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Start"
+                android:hint="@string/data_start"
                 android:inputType="date" />
 
             <EditText
                 android:id="@+id/edit_end"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="End"
+                android:hint="@string/data_end"
                 android:inputType="date" />
 
             <EditText
                 android:id="@+id/edit_length"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Length"
+                android:hint="@string/length"
                 android:inputType="number" />
-
-            <Button
-                android:id="@+id/button_ok"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="OK"
-                android:visibility="visible" />
 
         </LinearLayout>
 
@@ -134,37 +144,37 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="ID" />
+        android:text="@string/id" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="name" />
+        android:text="@string/name" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="kontrol" />
+        android:text="@string/kontrol" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="data_start" />
+        android:text="@string/data_start" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="data_end" />
+        android:text="@string/data_end" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="length" />
+        android:text="@string/length" />
     </LinearLayout>
 
     <ListView
@@ -179,4 +189,4 @@
 
     </ListView>
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
