@@ -13,6 +13,7 @@ import com.example.reestr.R
 import com.example.reestr.data.ReestrDB
 import kotlinx.android.synthetic.main.row_layout.view.*
 
+
 class ListReestrAdapter (activity: Activity,
                          private var lstReestr: List<ReestrDB>,
                          private var edit_id: EditText,
@@ -27,7 +28,7 @@ class ListReestrAdapter (activity: Activity,
 
 
 
-    @SuppressLint("ViewHolder", "InflateParams")
+    @SuppressLint("ViewHolder", "InflateParams", "ResourceType")
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val rowView: View = inflater.inflate(R.layout.row_layout, null)
 
@@ -42,6 +43,8 @@ class ListReestrAdapter (activity: Activity,
         // cобытие
         rowView.setOnClickListener {
 
+            //val rowAll: View = this.getView(R.layout.activity_main)
+            //rowAll.setBackgroundColor(Color.WHITE)
             rowView.setBackgroundColor(Color.MAGENTA)
 
             edit_id.setText(rowView.txt_id.text.toString())

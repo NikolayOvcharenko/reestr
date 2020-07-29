@@ -1,54 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/row_all"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:background="@color/colorPrimaryDark"
+    android:orientation="horizontal"
+    >
 
     <TextView
         android:id="@+id/txt_id"
-        android:layout_marginStart="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
+        android:background="@drawable/edit_text_style"
+        android:paddingLeft="10dp"
+        android:paddingRight="5dp"
         android:text="@string/id" />
 
     <TextView
         android:id="@+id/txt_name"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
+        android:background="@drawable/edit_text_style"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
         android:text="@string/name" />
 
     <TextView
         android:id="@+id/txt_kontrol"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
+        android:background="@drawable/edit_text_style"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
         android:text="@string/kontrol" />
 
     <TextView
         android:id="@+id/txt_data_start"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
+        android:background="@drawable/edit_text_style"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
         android:text="@string/data_start" />
 
     <TextView
         android:id="@+id/txt_data_end"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
+        android:background="@drawable/edit_text_style"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
         android:text="@string/data_end" />
 
     <TextView
         android:id="@+id/txt_length"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
+        android:background="@drawable/edit_text_style"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
         android:text="@string/length" />
-
 
 
 </LinearLayout>

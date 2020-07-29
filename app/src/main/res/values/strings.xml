@@ -14,8 +14,8 @@
     <string name="id">ID</string>
     <string name="name">name</string>
     <string name="kontrol">kontrol</string>
-    <string name="data_end">data_end</string>
-    <string name="data_start">data_start</string>
+    <string name="data_end">data end</string>
+    <string name="data_start">data start</string>
     <string name="length">length</string>
     <string name="reestrsmp">ReestrSMP</string>
     <string name="ok">OK</string>

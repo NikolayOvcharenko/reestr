@@ -8,6 +8,7 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.Button
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.reestr.adapter.ListReestrAdapter
 import com.example.reestr.DBHelper.DBHelper
@@ -128,11 +129,13 @@ class MainActivity : AppCompatActivity() {
 
         } catch (e: SQLiteException) {
             whers = " where _id = 0"
+            Toast.makeText(application,"Error Find", Toast.LENGTH_SHORT).show()
             refreshData()
         }
     }
 
-    private fun refreshData() {
+    fun refreshData() {
+
         lstReestr = db.allReestr
         val adapter = ListReestrAdapter(
             this@MainActivity,
@@ -145,6 +148,7 @@ class MainActivity : AppCompatActivity() {
             edit_length
         )
         list_reestr.adapter = adapter
+        adapter.notifyDataSetChanged()
         // row_all.setBackgroundColor(Color.WHITE)
     }
 

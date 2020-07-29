@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -135,58 +134,76 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="20dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:background="@color/colorPrimaryDark"
         android:orientation="horizontal"
-        android:layout_marginTop="110dp">
+        android:paddingTop="2dp"
+        android:paddingBottom="3dp">
 
-    <TextView
-        android:layout_marginLeft="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="@string/id" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/edit_text_style"
+            android:paddingLeft="10dp"
+            android:paddingRight="5dp"
+            android:text="@string/id" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="@string/name" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/edit_text_style"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="@string/name" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="@string/kontrol" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/edit_text_style"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="@string/kontrol" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="@string/data_start" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/edit_text_style"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="@string/data_start" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="@string/data_end" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/edit_text_style"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="@string/data_end" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="@string/length" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/edit_text_style"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="@string/length" />
     </LinearLayout>
 
     <ListView
         android:id="@+id/list_reestr"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="130dp"
+        android:layout_height="590dp"
+        android:layout_marginTop="140dp"
+        android:background="@color/colorPrimaryDark"
         android:choiceMode="singleChoice">
-
-
-
-
+        android:background="@color/colorPrimaryDark"
     </ListView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
