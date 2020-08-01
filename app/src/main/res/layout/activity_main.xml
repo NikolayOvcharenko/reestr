@@ -51,6 +51,14 @@
                 android:visibility="gone" />
 
             <Button
+                android:id="@+id/button_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="@android:string/cancel"
+                android:visibility="gone" />
+
+            <Button
                 android:id="@+id/button_add"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -111,14 +119,14 @@
                 android:id="@+id/edit_start"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/data_start"
+                android:hint="@string/data_start_blank"
                 android:inputType="date" />
 
             <EditText
                 android:id="@+id/edit_end"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/data_end"
+                android:hint="@string/data_end_blank"
                 android:inputType="date" />
 
             <EditText

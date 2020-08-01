@@ -18,7 +18,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 var whers: String = ""
 
 class MainActivity : AppCompatActivity() {
-
+    val mm = "(01|02|03|04|05|06|07|08|09|10|11|12)"
+    // val dd = "(01|..|31)"
     private var news = 0
     private lateinit var db: DBHelper
     private var lstReestr: List<ReestrDB> = ArrayList()
@@ -59,10 +60,20 @@ class MainActivity : AppCompatActivity() {
         }
 
         button_ok.setOnClickListener {
-
             if (news == 2) find()
             else {
-                if (edit_id.text.toString() != "") {
+                if (edit_id.text.toString() == "" ||
+                    edit_name.text.toString() == "" ||
+                    edit_kontrol.text.toString() == "" ||
+                    edit_length.text.toString() == "" ||
+                    edit_end.text.toString() == "" ||
+                    edit_start.text.toString() == "" ||
+                    !edit_start.text.toString().matches("""[0-3]\d-$mm-20[2-9]\d""".toRegex()) ||
+                    !edit_end.text.toString().matches("""[0-3]\d-$mm-20[2-9]\d""".toRegex())
+                ) {
+                    Toast.makeText(application, "Error Input", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                } else {
                     val reestr = ReestrDB(
                         Integer.parseInt(edit_id.text.toString()),
                         edit_name.text.toString(),
@@ -74,11 +85,17 @@ class MainActivity : AppCompatActivity() {
                     if (news == 0) db.addSMP(reestr) else db.updateSMP(reestr)
                     refreshData()
                 }
+
+                edit.visibility = GONE
+                button(false)
             }
-            edit.visibility = GONE
-            button(false)
         }
 
+        button_cancel.setOnClickListener {
+            edit.visibility = GONE
+            button(false)
+            refreshData()
+        }
         button_find.setOnClickListener {
             button(true)
             val edits: LinearLayout = findViewById(R.id.edit)
@@ -109,6 +126,8 @@ class MainActivity : AppCompatActivity() {
         ok.visibility = if (index) VISIBLE else GONE
         val clear: Button = findViewById(R.id.button_clear)
         clear.visibility = if (index) VISIBLE else GONE
+        val cancel: Button = findViewById(R.id.button_cancel)
+        cancel.visibility = if (index) VISIBLE else GONE
     }
 
     private fun find() {
@@ -129,7 +148,7 @@ class MainActivity : AppCompatActivity() {
 
         } catch (e: SQLiteException) {
             whers = " where _id = 0"
-            Toast.makeText(application,"Error Find", Toast.LENGTH_SHORT).show()
+            Toast.makeText(application, "Error Find", Toast.LENGTH_SHORT).show()
             refreshData()
         }
     }

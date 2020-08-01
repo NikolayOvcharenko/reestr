@@ -6,6 +6,7 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.widget.Toast
 import com.example.reestr.data.ReestrDB
 import com.example.reestr.whers
 import java.util.*
@@ -131,11 +132,15 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null
             if (cursor.moveToFirst()) {
                 do {
                     val reestr = ReestrDB()
+
                     reestr.id = cursor.getInt(cursor.getColumnIndex(COLUMN_ID))
                     reestr.name = cursor.getString(cursor.getColumnIndex(COLUMN_NAME))
                     reestr.kontrol = cursor.getString(cursor.getColumnIndex(COLUMN_KONTROL))
-                    reestr.start = cursor.getString(cursor.getColumnIndex(COLUMN_DATA_START))
-                    reestr.end = cursor.getString(cursor.getColumnIndex(COLUMN_DATA_END))
+                    val templateData = """\d{2}-\d{2}-\d{4}"""
+                    val start = cursor.getString(cursor.getColumnIndex(COLUMN_DATA_START))
+                    reestr.start = if (start.matches(templateData.toRegex())) start else ""
+                    val end = cursor.getString(cursor.getColumnIndex(COLUMN_DATA_END))
+                    reestr.end = if (end.matches(templateData.toRegex())) start else ""
                     reestr.length = cursor.getString(cursor.getColumnIndex(COLUMN_LENGTH))
 
                     lstReestr.add(reestr)
@@ -163,12 +168,12 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null
     fun updateSMP(reestrDB: ReestrDB): Int {
         val db = this.writableDatabase
         val values = ContentValues()
-        values.put(COLUMN_ID,           reestrDB.id)
-        values.put(COLUMN_NAME,         reestrDB.name)
-        values.put(COLUMN_KONTROL,      reestrDB.kontrol)
-        values.put(COLUMN_DATA_START,   reestrDB.start)
-        values.put(COLUMN_DATA_END,     reestrDB.end)
-        values.put(COLUMN_LENGTH,       reestrDB.length)
+        values.put(COLUMN_ID, reestrDB.id)
+        values.put(COLUMN_NAME, reestrDB.name)
+        values.put(COLUMN_KONTROL, reestrDB.kontrol)
+        values.put(COLUMN_DATA_START, reestrDB.start)
+        values.put(COLUMN_DATA_END, reestrDB.end)
+        values.put(COLUMN_LENGTH, reestrDB.length)
 
         return db.update(TABLE_NAME, values, "$COLUMN_ID=?", arrayOf(reestrDB.id.toString()))
 
