@@ -19,6 +19,7 @@ var whers: String = ""
 
 class MainActivity : AppCompatActivity() {
     val mm = "(01|02|03|04|05|06|07|08|09|10|11|12)"
+
     // val dd = "(01|..|31)"
     private var news = 0
     private lateinit var db: DBHelper
@@ -62,12 +63,10 @@ class MainActivity : AppCompatActivity() {
         button_ok.setOnClickListener {
             if (news == 2) find()
             else {
-                if (edit_id.text.toString() == "" ||
-                    edit_name.text.toString() == "" ||
-                    edit_kontrol.text.toString() == "" ||
-                    edit_length.text.toString() == "" ||
-                    edit_end.text.toString() == "" ||
-                    edit_start.text.toString() == "" ||
+                if (!isValidInt(edit_id.text.toString()) ||
+                    !isValidString(edit_name.text.toString()) ||
+                    !isValidString(edit_kontrol.text.toString()) ||
+                    !isValidInt(edit_length.text.toString()) ||
                     !edit_start.text.toString().matches("""[0-3]\d-$mm-20[2-9]\d""".toRegex()) ||
                     !edit_end.text.toString().matches("""[0-3]\d-$mm-20[2-9]\d""".toRegex())
                 ) {
@@ -187,4 +186,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+}
+
+fun isValidString(string: String): Boolean {
+    return string.matches("""[а-яА-Яa-zA-Z].{3,}""".toRegex())
+}
+
+fun isValidInt(string: String): Boolean {
+    return string.matches("""\d{1,}""".toRegex())
 }
